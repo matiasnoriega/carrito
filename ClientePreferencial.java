@@ -3,7 +3,7 @@ package ar.edu.uno.progconobjetos1.carritodecompras.modulo;
 public class ClientePreferencial extends Cliente{
 	private Double porcentajeDescuento;
 	
-	public ClientePreferencial(String nombre, String direccionEnvio, String direccionCobro, Tarjeta tarjeta, String email, Double porcentajeDescutitularento){
+	public ClientePreferencial(String nombre, String direccionEnvio, String direccionCobro, String email,  Tarjeta tarjeta, Double porcentajeDescuento){
 		super(nombre, direccionEnvio, direccionCobro, email, tarjeta);
 		this.setPorcentajeDescuento(porcentajeDescuento);
 	}
@@ -16,6 +16,13 @@ public class ClientePreferencial extends Cliente{
 		return this.porcentajeDescuento;
 	}
 	
+	public void comprar(Carrito carrito){
+		
+		if(this.getTarjeta().verificarTarjeta((carrito.getCostoCarrito())*(this.getPorcentajeDescuento()))==true)
+			System.out.println("Se han debitado $"+carrito.getCostoCarrito()+" de su tarjeta. Su compra ha sido realizada con exito!");
+		else
+			System.out.println("La operacion no pudo ser completada."+carrito.getCostoCarrito());
+		
+	}
 	
 }
-

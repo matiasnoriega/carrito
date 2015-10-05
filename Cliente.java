@@ -57,12 +57,11 @@ public class Cliente {
 	}
 	
 	
-	public void comprar(Carrito carrito){	
+	public void comprar(Carrito carrito){
 		if(this.tarjeta.verificarTarjeta(carrito.getCostoCarrito())==true)
-			System.out.println("Se han debitado $"+carrito.getCostoCarrito()+" de su tarjeta. Su compra ha sido realizada con exito!");
+			System.out.println("Felicidades "+this.getNombre()+", la compra de su carrito "+carrito.getNombreCarrito()+" ha sido realizada con exito!\nSe han debitado $"+carrito.getCostoCarrito()+" de su tarjeta.\n\nLos productos seran enviados a "+this.getDireccionEnvio()+"\n-------------------------------------------------------");
 		else
-			System.out.println("La operacion no pudo ser completada."+carrito.getCostoCarrito());
-		
+			System.out.println("La operacion no pudo ser completada.\n La compra que usted desea realizar ($"+carrito.getCostoCarrito()+" supera el limite de su tarjeta: $"+this.tarjeta.getLimite());
 	}
 	
 }

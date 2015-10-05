@@ -28,8 +28,13 @@ public class Tarjeta {
 	
 	public Boolean verificarTarjeta(Double valorCompra){
 		
-		return this.numero.length()==16&&this.limite>valorCompra;
+		if(this.numero.length()!=16)
+			System.out.println("El numero de la tarjeta no es valido.\n------------------------------");
 		
+		if(this.limite<valorCompra)
+			System.out.println("Su compra de $"+valorCompra+" excede el limite de su tarjeta.\n------------------------------");
+		
+		return (this.numero.length()==16&&this.limite>valorCompra);
 	}
 
 

@@ -7,6 +7,8 @@ public class Carrito {
 	private String nombreCarrito;
 	private Double costoCarrito;
 	private ArrayList<ItemCarrito> listaItems= new ArrayList<ItemCarrito>();
+	private Boolean estadoVendido = false;
+
 
 	//Constructor de la clase Carrito, solamente pide al cliente el nombre del carrito
 	public Carrito(String nombre){
@@ -48,7 +50,25 @@ public class Carrito {
 		}
 		return sumaItems;
 	}
+	public Boolean getEstadoVendido() {
+		return estadoVendido;
+	}
 
-
+	public void setEstadoVendido(Boolean estadoVendido) {
+		this.estadoVendido = estadoVendido;
+	}
+	public String mostrarItemCarrito(){
+		String mostrarItems="\n";
+		for(int i=0;i<listaItems.size();i++){
+			mostrarItems+=listaItems.get(i).toString()+"\n";
+		}
+		return mostrarItems;
+	}
+	
+	public String toString(){
+		
+		return "El carrito "+this.getNombreCarrito()+" contiene los siguientes items:\n"+this.mostrarItemCarrito();
+	
+	}
 
 }

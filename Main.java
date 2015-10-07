@@ -3,7 +3,7 @@ package ar.edu.uno.progconobjetos1.carritodecompras.modulo;
 public class Main {
 	
 	public static void main(String[] args) {
-		Tarjeta tarjetaJuan = new Tarjeta("5000001854101111",200000.00);
+		Tarjeta tarjetaJuan = new Tarjeta("5000001854101112",200000.00);
 		Cliente juan = new ClientePreferencial("Juan Marin", "Antofagasta 1960", "Antofagasta 1960", "juanmarin@hotmail.com", tarjetaJuan, 25.00);
 		Carrito carritoJuan = new Carrito("Tecnologia");
 		
@@ -44,6 +44,14 @@ public class Main {
 		carritoIvan1.agregarItemCarrito(item03);
 		
 		ivan.comprar(carritoIvan1);
+		
+		carritoIvan2.agregarItemCarrito(item1);
+		carritoIvan2.agregarItemCarrito(item02);
+		carritoIvan2.agregarItemCarrito(item3);
+		
+		System.out.println(carritoIvan1.toString());
+		
+		System.out.println(ivan.mostrarCarritos());
 	}
 
 }

@@ -34,7 +34,9 @@ public class ItemCarrito {
 		this.costoItem = costoItem;
 	}
 	
-	
+	public String toString(){
+		return "Tiene "+this.cantidad+" unidades del producto: "+this.producto.getNombre();
+	}
 	
 	
 }

@@ -9,16 +9,16 @@ public class Cliente {
 	private String email;
 	private Tarjeta tarjeta;
 	private ArrayList<Carrito> listaCarritos = new ArrayList<Carrito>();
-	
-	
-	
+
+
+
 	public Cliente(String nombre, String direccionEnvio, String direccionCobro, String email, Tarjeta tarjeta){
 		this.setNombre(nombre);
 		this.setDireccionEnvio(direccionEnvio);
 		this.setDireccionCobro(direccionCobro);
 		this.setEmail(email);
 		this.setTarjeta(tarjeta);
-		
+
 	}
 	//Getters y setters de la clase
 	public Tarjeta getTarjeta() {
@@ -52,15 +52,33 @@ public class Cliente {
 		return this.email;
 	}
 	//Metodo que genera un nuevo carrito en el cliente.
-	public void agregarCarrito(Carrito nuevocarrito){
-	listaCarritos.add(nuevocarrito);
+	public void agregarCarrito(Carrito carrito){
+		this.listaCarritos.add(carrito);
+	}
+	//Metodo que remueve de la listaCarritos el carrito que le ordenemos.
+	public void eliminarCarrito(Carrito carrito){
+		this.listaCarritos.remove(carrito);
+		System.out.println("Se elimino el carrito "+carrito.getNombreCarrito()+"!");
 	}
 	
+	public String mostrarCarritos(){
+		String mostrarCarritos = "\n";
+		for(int i=0;i<listaCarritos.size();i++){
+			mostrarCarritos+=listaCarritos.get(i).getNombreCarrito()+"\n";}
+		return mostrarCarritos;
+	}
+
+	//El metodo compra el carrito que pidammos, y verifica primero que el carrito ya no haya sido comprado, y luego verifica si es posible realizar la compra con la tarjeta del cliente.
 	
 	public void comprar(Carrito carrito){
-		if(this.tarjeta.verificarTarjeta(carrito.getCostoCarrito())==true)
-			System.out.println("Felicidades "+this.getNombre()+", la compra de su carrito "+carrito.getNombreCarrito()+" ha sido realizada con exito!\nSe han debitado $"+carrito.getCostoCarrito()+" de su tarjeta.\n\nLos productos seran enviados a "+this.getDireccionEnvio()+"\n-------------------------------------------------------");
-		
+		if(carrito.getEstadoVendido()==false){
+			if(this.tarjeta.verificarTarjeta(carrito.getCostoCarrito())==true){
+				System.out.println("Felicidades "+this.getNombre()+", la compra de su carrito "+carrito.getNombreCarrito()+" ha sido realizada con exito!\nSe han debitado $"+carrito.getCostoCarrito()+" de su tarjeta.\n\nLos productos seran enviados a "+this.getDireccionEnvio()+"\n-------------------------------------------------------");
+				carrito.setEstadoVendido(true);
+			}
+		}
+		else
+			System.out.println("El carrito ya fue comprado!");
 	}
-	
+
 }
